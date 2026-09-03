@@ -1,7 +1,10 @@
 package com.cristian.cryptobackend.service;
 
 import com.cristian.cryptobackend.client.CoinGeckoClient;
+import com.cristian.cryptobackend.dto.CoinDto;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CoinService {
@@ -10,7 +13,7 @@ public class CoinService {
         this.client = client;
     }
 
-    public String text(){
-        return "CryptoAPI";
+    public List<CoinDto> getData(){
+        return client.getData();
     }
 }
