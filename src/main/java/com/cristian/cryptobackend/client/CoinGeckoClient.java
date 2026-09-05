@@ -9,12 +9,12 @@ import java.util.List;
 
 @Component
 public class CoinGeckoClient {
-    private final RestClient client = RestClient.builder().build();
+    private final RestClient client = RestClient.builder().baseUrl("https://api.coingecko.com/api/v3").build();
     CoinGeckoClient(){}
     public List<CoinDto> getData(String ids){
         System.out.println(ids);
         return client.get()
-                .uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+ids)
+                .uri("/coins/markets?vs_currency=usd&ids="+ids)
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<CoinDto>>() {});
 
