@@ -18,6 +18,9 @@ public class CoinsController {
         this.service=service;
     }
 
+    //GET /api/coins/{id}/history?days=7
+    @GetMapping("/api/coins/{id}/history?days={days}")
+
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleException(RuntimeException e) {
