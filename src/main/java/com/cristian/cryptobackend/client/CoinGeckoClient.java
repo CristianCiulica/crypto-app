@@ -1,12 +1,14 @@
 package com.cristian.cryptobackend.client;
 
 import com.cristian.cryptobackend.dto.CoinDto;
+import com.cristian.cryptobackend.dto.MarketChartDto;
 import com.cristian.cryptobackend.dto.PricePointDto;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -37,7 +39,7 @@ public class CoinGeckoClient {
     }
 
     public List<PricePointDto> getPriceHistory(String id, int days){
-        return client.get()
+        MarketChartDto data = client.get()
                 .uri(uriBuilder ->
                         uriBuilder
                                 .path("/coins/{id}/market_chart")
@@ -46,7 +48,15 @@ public class CoinGeckoClient {
                                 .build(id)
                 )
                 .retrieve()
+                .body(new ParameterizedTypeReference<MarketChartDto>() {});
 
-
+        List<PricePointDto> prices=new ArrayList<>();
+        for(var price:data.getPrices()){
+            PricePointDto pricePoint = new PricePointDto();
+            pricePoint.setTime(price.get(0).longValue());
+            pricePoint.setPrice(price.get(1));
+            prices.add(pricePoint);
+        }
+        return prices;
     }
 }
