@@ -28,6 +28,7 @@ public class CoinGeckoClient {
                             throw new RuntimeException("CoinGecko request failed");
                         }
                 )
+                
                 .body(new ParameterizedTypeReference<List<CoinDto>>() {});
 
     }
