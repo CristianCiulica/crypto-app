@@ -11,10 +11,10 @@ import java.util.List;
 public class CoinGeckoClient {
     private final RestClient client = RestClient.builder().build();
     CoinGeckoClient(){}
-
-    public List<CoinDto> getData(){
+    public List<CoinDto> getData(String ids){
+        System.out.println(ids);
         return client.get()
-                .uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum")
+                .uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+ids)
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<CoinDto>>() {});
 
