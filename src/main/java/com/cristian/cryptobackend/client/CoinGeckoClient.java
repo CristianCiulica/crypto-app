@@ -12,7 +12,10 @@ import java.util.List;
 public class CoinGeckoClient {
     private final RestClient client = RestClient.builder().baseUrl("https://api.coingecko.com/api/v3").build();
     CoinGeckoClient(){}
+
+
     public List<CoinDto> getData(String ids){
+
         return client.get()
                 .uri(uriBuilder ->
                         uriBuilder
