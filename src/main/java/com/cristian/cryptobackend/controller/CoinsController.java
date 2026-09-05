@@ -17,7 +17,7 @@ public class CoinsController {
     }
 
     @GetMapping("/api/coins")
-    public List<CoinDto> getCoins(@RequestParam String ids){
-        return service.getData();
+    public List<CoinDto> getCoins(@RequestParam(defaultValue="bitcoin,ethereum") String ids){
+        return service.getData(ids);
     }
 }
