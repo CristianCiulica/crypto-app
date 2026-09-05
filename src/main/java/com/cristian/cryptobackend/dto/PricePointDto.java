@@ -8,7 +8,7 @@ public class PricePointDto {
         return price;
     }
 
-    public void setPrice(Double aDouble) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

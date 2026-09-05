@@ -1,12 +1,10 @@
 package com.cristian.cryptobackend.controller;
 
 import com.cristian.cryptobackend.dto.CoinDto;
+import com.cristian.cryptobackend.dto.PricePointDto;
 import com.cristian.cryptobackend.service.CoinService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +16,10 @@ public class CoinsController {
         this.service=service;
     }
 
-    //GET /api/coins/{id}/history?days=7
-    @GetMapping("/api/coins/{id}/history?days={days}")
-
+    @GetMapping("/api/coins/{id}/history")
+    public List<PricePointDto> getPriceHistory(@PathVariable String id, @RequestParam int days){
+        return service.getPriceHistory(id,days);
+    }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleException(RuntimeException e) {
