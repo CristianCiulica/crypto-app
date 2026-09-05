@@ -1,6 +1,7 @@
 package com.cristian.cryptobackend.client;
 
 import com.cristian.cryptobackend.dto.CoinDto;
+import com.cristian.cryptobackend.dto.PricePointDto;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
@@ -32,6 +33,20 @@ public class CoinGeckoClient {
                         }
                 )
                 .body(new ParameterizedTypeReference<List<CoinDto>>() {});
+
+    }
+
+    public List<PricePointDto> getPriceHistory(String id, int days){
+        return client.get()
+                .uri(uriBuilder ->
+                        uriBuilder
+                                .path("/coins/{id}/market_chart")
+                                .queryParam("vs_currency", "usd")
+                                .queryParam("days", days)
+                                .build(id)
+                )
+                .retrieve()
+
 
     }
 }
