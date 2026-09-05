@@ -21,7 +21,7 @@ public class CoinsController {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleException(RuntimeException e) {
-        return ResponseEntity.status(500).body(e.getMessage());
+        return ResponseEntity.status(500).body("Something went wrong :(");
     }
     @GetMapping("/api/coins")
     public List<CoinDto> getCoins(@RequestParam(defaultValue="bitcoin,ethereum") String ids){
