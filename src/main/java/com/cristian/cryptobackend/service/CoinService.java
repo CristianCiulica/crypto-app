@@ -13,7 +13,7 @@ public class CoinService {
         this.client = client;
     }
 
-    public List<CoinDto> getData(){
-        return client.getData();
+    public List<CoinDto> getData(String ids){
+        return client.getData(ids);
     }
 }
