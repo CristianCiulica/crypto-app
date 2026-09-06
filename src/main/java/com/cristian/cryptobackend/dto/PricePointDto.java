@@ -7,6 +7,7 @@ public class PricePointDto {
     public double getPrice() {
         return price;
     }
+
     public void setPrice(Double price) {
         this.price = price;
     }
