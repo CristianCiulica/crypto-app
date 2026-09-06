@@ -18,6 +18,7 @@ public class CoinGeckoClient {
 
 
     public List<CoinDto> getData(String ids){
+
         return client.get()
                 .uri(uriBuilder ->
                         uriBuilder
