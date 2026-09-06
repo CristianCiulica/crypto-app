@@ -4,7 +4,6 @@ import com.cristian.cryptobackend.client.CoinGeckoClient;
 import com.cristian.cryptobackend.dto.CoinDto;
 import com.cristian.cryptobackend.dto.PricePointDto;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
