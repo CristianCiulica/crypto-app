@@ -37,7 +37,6 @@ public class CoinGeckoClient {
                 .body(new ParameterizedTypeReference<List<CoinDto>>() {});
 
     }
-
     public List<PricePointDto> getPriceHistory(String id, int days){
         MarketChartDto data = client.get()
                 .uri(uriBuilder ->
