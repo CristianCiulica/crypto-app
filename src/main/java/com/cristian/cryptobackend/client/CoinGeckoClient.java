@@ -40,11 +40,18 @@ public class CoinGeckoClient {
     public List<PricePointDto> getPriceHistory(String id, int days){
         MarketChartDto data = client.get()
                 .uri(uriBuilder ->
-                        uriBuilder
-                                .path("/coins/{id}/market_chart")
-                                .queryParam("vs_currency", "usd")
-                                .queryParam("days", days)
-                                .build(id)
+                        {
+                            var builder = uriBuilder
+                                    .path("/coins/{id}/market_chart")
+                                    .queryParam("vs_currency", "usd")
+                                    .queryParam("days", days);
+
+                            if (days > 90) {
+                                builder = builder.queryParam("interval", "daily");
+                            }
+
+                            return builder.build(id);
+                        }
                 )
                 .retrieve()
                 .body(new ParameterizedTypeReference<MarketChartDto>() {});
