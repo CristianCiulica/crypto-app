@@ -1,6 +1,7 @@
 package com.cristian.cryptobackend.controller;
 
 import com.cristian.cryptobackend.dto.CoinDto;
+import com.cristian.cryptobackend.dto.PredictionResponseDto;
 import com.cristian.cryptobackend.dto.PricePointDto;
 import com.cristian.cryptobackend.service.CoinService;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,10 @@ public class CoinsController {
     public List<PricePointDto> getPriceHistory(@PathVariable String id, @RequestParam int days){
         return service.getPriceHistory(id,days);
     }
-
+    @GetMapping("/api/coins/{id}/prediction")
+    public PredictionResponseDto getPrediction(@PathVariable String id) {
+        return service.getPrediction(id);
+    }
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleException(RuntimeException e) {
         return ResponseEntity.status(500).body("Something went wrong :(");
