@@ -45,7 +45,6 @@ public class CoinGeckoClient {
                             .queryParam("vs_currency", "usd")
                             .queryParam("days", days);
 
-                    // Dacă cerem date pe termen lung (> 90 zile), CoinGecko are nevoie de interval zilnic
                     if (days > 90) {
                         builder = builder.queryParam("interval", "daily");
                     }
