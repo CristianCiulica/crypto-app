@@ -12,11 +12,9 @@ public class CoinService {
     public CoinService(CoinGeckoClient client){
         this.client = client;
     }
-
     public List<PricePointDto> getPriceHistory(String id, int days){
         return client.getPriceHistory(id,days);
     }
-
     public List<CoinDto> getData(String ids){
         return client.getData(ids);
     }
